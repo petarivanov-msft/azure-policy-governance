@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "displayName": "Require Environment tag on resource groups",
+    "description": "Denies creation of resource groups that don't have an 'Environment' tag. Helps prevent untagged resource groups from slipping through.",
+    "policyType": "Custom",
+    "mode": "All",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+          },
+          {
+            "field": "tags['Environment']",
+            "exists": "false"
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

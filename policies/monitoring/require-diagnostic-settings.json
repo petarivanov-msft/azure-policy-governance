@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "displayName": "Audit resources missing diagnostic settings",
+    "description": "Audits supported resources that don't have diagnostic settings configured. Doesn't block anything, just flags them for review.",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "parameters": {
+      "resourceTypes": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Resource types to audit",
+          "description": "List of resource types that should have diagnostic settings"
+        },
+        "defaultValue": [
+          "Microsoft.Compute/virtualMachines",
+          "Microsoft.Network/networkSecurityGroups",
+          "Microsoft.KeyVault/vaults",
+          "Microsoft.Sql/servers/databases",
+          "Microsoft.Web/sites",
+          "Microsoft.Network/applicationGateways"
+        ]
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": "[parameters('resourceTypes')]"
+      },
+      "then": {
+        "effect": "auditIfNotExists",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "existenceCondition": {
+            "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+            "equals": "true"
+          }
+        }
+      }
+    }
+  }
+}

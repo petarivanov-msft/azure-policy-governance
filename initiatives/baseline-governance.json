@@ -1,0 +1,43 @@
+{
+  "properties": {
+    "displayName": "Baseline Governance Initiative",
+    "description": "Bundles the core governance policies — tagging, naming, compute restrictions, and monitoring. Assign this at the subscription or management group level.",
+    "policyType": "Custom",
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "requireEnvironmentTag",
+        "policyDefinitionId": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/require-environment-tag",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "requireCostCenterTag",
+        "policyDefinitionId": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/require-costcenter-tag",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "enforceNaming",
+        "policyDefinitionId": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/enforce-naming-convention",
+        "parameters": {
+          "namePattern": {
+            "value": "*"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "allowedVmSkus",
+        "policyDefinitionId": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/allowed-vm-skus",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "requireManagedDisks",
+        "policyDefinitionId": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/require-managed-disks",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "requireDiagnosticSettings",
+        "policyDefinitionId": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/require-diagnostic-settings",
+        "parameters": {}
+      }
+    ]
+  }
+}

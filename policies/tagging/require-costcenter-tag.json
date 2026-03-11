@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "displayName": "Require CostCenter tag on resources",
+    "description": "Denies resource creation if the CostCenter tag is missing. Helps finance teams track spend by department.",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "field": "tags['CostCenter']",
+        "exists": "false"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

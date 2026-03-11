@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "displayName": "Deny public IP addresses",
+    "description": "Blocks creation of public IP address resources. Intended for production subscriptions where everything should go through a load balancer, firewall, or private endpoint.",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.Network/publicIPAddresses"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

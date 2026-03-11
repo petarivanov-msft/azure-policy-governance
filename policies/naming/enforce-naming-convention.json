@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "displayName": "Enforce resource naming convention",
+    "description": "Denies resources that don't match the expected naming pattern. Pattern is configurable via parameter.",
+    "policyType": "Custom",
+    "mode": "All",
+    "parameters": {
+      "namePattern": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Naming pattern",
+          "description": "The naming pattern to enforce (e.g. 'rg-*-uksouth-*' for resource groups)"
+        },
+        "defaultValue": "*"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "not": {
+          "field": "name",
+          "like": "[parameters('namePattern')]"
+        }
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
